@@ -1,0 +1,8 @@
+version: '3'
+services:
+  vue-app-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:  
+      - 6000:80
