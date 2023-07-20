@@ -2,16 +2,15 @@ tasks:
   - name: frontend
     init: npm install 
     command: 
-      cd ./vue-app
-      docker-compose -f docker-compose.yml build;
-      docker-compose -f docker-compose.yml up -d;
-      docker-compose -f docker-compose.yml logs -f;
+      cd ./vue-app;
+      docker-compose build;
+      docker-compose up -d;
 
   - name: backend
     command:
       cd ./nestjs-api;
       npm i;
       npm i -g @nestjs/cli;
-      docker-compose -f docker-compose.yml build;
-      docker-compose -f docker-compose.yml up -d;
-      docker-compose -f docker-compose.yml logs -f;
+      docker-compose build;
+      docker-compose up -d;
+
