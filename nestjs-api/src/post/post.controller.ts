@@ -20,6 +20,11 @@ export class PostController {
     const posts = this.postService.get(parseInt(id, 10));
     return posts;
   }
+  @Get()
+  getAllPosts(): any {
+    const posts = this.postService.getAll();
+    return posts;
+  }
 
   @Post()
   addPost(@Body() data: CreatePostDto): any {

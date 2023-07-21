@@ -68,4 +68,16 @@ export class PostService {
 
     return existingPost;
   }
+  async getAll() {
+    const allPosts = await this.prisma.post.findMany({
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        published: true,
+      },
+    });
+
+    return allPosts;
+  }
 }
