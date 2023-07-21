@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { isString } from 'class-validator';
 export class CreatePostDto {
   @ApiProperty()
   public id: number;

@@ -1,50 +1,35 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<template>
+  <ul>
+    <li v-for="post in Posts" :key="post.id"> <!-- Fix: Use "Posts" instead of "posts" -->
+      {{ post.title }} 
+    </li>
+  </ul>
+  <p v-if="error">{{ error }}</p>
+</template>
+<script>
+import service from './services'
+export default {
+  data() {
+    return {
+      Posts: [], // Fix: Capitalize "Posts"
+      error: null,
+    };
+  },
+  methods: {
+    async fetchProducts() {
+      try {
+        await service.post.postControllerGetAllPosts().then((res)=> {
+          console.log('aaaaaaaa', res?.data);
+          this.Posts = res?.data; // Fix: Use "Posts" instead of "posts"
+        })
+      } catch (error) {
+        this.error = error.message;
+      }
+    },
+  },
+  mounted() {
+    this.fetchProducts();
+  },
+};
 </script>
 
-<template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-   <div>
-    Hello Vue
-   </div>
-    <TheWelcome />
-  </main>
-</template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
