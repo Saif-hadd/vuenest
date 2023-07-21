@@ -1,0 +1,16 @@
+tasks:
+  - name: frontend
+    init: npm install 
+    command: 
+      cd ./vue-app;
+      docker-compose build;
+      docker-compose up -d;
+
+  - name: backend
+    command:
+      cd ./nestjs-api;
+      npm i;
+      npm i -g @nestjs/cli;
+      docker-compose build;
+      docker-compose up -d;
+
